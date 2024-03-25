@@ -11,6 +11,7 @@ import AppliedJobs from './Components/AppliedJobs/AppliedJobs';
 import Statistics from './Components/Statistics/Statistics';
 import Blog from './Components/Blog/Blog';
 import Error from './Components/Error/Error';
+import FeaturedDetails from './Components/FeaturedDetails/FeaturedDetails';
 
 const router = createBrowserRouter([
   {
@@ -33,14 +34,19 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog/>
+      },
+      {
+        path: "/details/:id",
+        element: <FeaturedDetails/>,
+        loader: ({params}) => fetch(`jobs.json/${params.id}`)
       }
     ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <>
    <div className='container mx-auto manrope bg-gradient-to-r from-[#7E90FE0D] to-[#9873FF0D]'>
    <RouterProvider router={router} />
    </div>
-  </React.StrictMode>,
+  </>,
 )

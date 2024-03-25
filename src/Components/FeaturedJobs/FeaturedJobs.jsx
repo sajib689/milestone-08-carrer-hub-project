@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react";
+import FeaturedCard from "../FeaturedCard/FeaturedCard";
+
 const FeaturedJobs = () => {
+    const [jobs, setJobs] = useState([])
+    useEffect( () => {
+        fetch('jobs.json')
+        .then(res => res.json())
+        .then(data => setJobs(data))
+    },[])
+
   return (
     <div className="mt-[200px] mb-[100px]">
       <div className="text-center">
@@ -9,7 +19,11 @@ const FeaturedJobs = () => {
         </p>
       </div>
       {/* featured card */}
-      
+        <div className="m-4 grid grid-cols md:grid-cols-2 gap-5 mt-[100px]">
+            {
+                jobs.map(job => <FeaturedCard key={job.id} job={job}></FeaturedCard>)
+            }
+        </div>
     </div>
   );
 };
