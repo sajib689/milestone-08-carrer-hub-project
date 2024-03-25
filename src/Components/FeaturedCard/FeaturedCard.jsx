@@ -13,9 +13,7 @@ const FeaturedCard = ({ job }) => {
     remote_or_onsite,
     salary,
   } = job;
-  const handleFeatured = job => {
-    console.log(job)
-  }
+
   return (
     <div className=" card card-compact w-full bg-base-100 shadow-xl">
       <div className='flex justify-start m-5'>
@@ -41,7 +39,7 @@ const FeaturedCard = ({ job }) => {
 
         </div>
         <div className="card-actions justify-start">
-          <Link onClick={() => handleFeatured(job)} className="btn text-white bg-gradient-to-r from-[#7E90FE] to-[#9873FF]">
+          <Link to={`job/${id}`} className="btn text-white bg-gradient-to-r from-[#7E90FE] to-[#9873FF]">
             View Details
           </Link>
         </div>

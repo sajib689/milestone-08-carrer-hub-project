@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import {
@@ -36,9 +36,9 @@ const router = createBrowserRouter([
         element: <Blog/>
       },
       {
-        path: "/details/:id",
+        path: "/job/:id",
         element: <FeaturedDetails/>,
-        loader: ({params}) => fetch(`jobs.json/${params.id}`)
+        loader: () => fetch(`../public/jobs.json`)
       }
     ],
   },
