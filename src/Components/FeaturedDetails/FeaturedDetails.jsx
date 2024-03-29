@@ -18,10 +18,26 @@ const FeaturedDetails = () => {
     educational_requirements,
     experiences,
   } = job;
-const handleJob = job => {
+  const findMatch = () => {
+    let job = []
+    const storeJobs = localStorage.getItem('job')
+    if(storeJobs) {
+      job = JSON.parse(storeJobs)
+    }
+    return job
+  }
+  const handleJob = job => {
+    const getJob = findMatch()
+    const isExisting = getJob.find(j => j.id === job.id);
+    
+    if (isExisting) {
+     return toast.error("Already have!.")
+      
+    }
+    
+    localStorage.setItem('jobs', JSON.stringify(job));
+  };
   
-  localStorage.setItem('jobs', JSON.stringify(job));
-}
   return (
     <div>
       <div>
