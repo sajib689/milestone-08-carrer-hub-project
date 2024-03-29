@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import money from "../../assets/icons/money.png";
 import calcander from "../../assets/icons/calendar.png";
 import phone from "../../assets/icons/phone.png";
@@ -10,12 +10,7 @@ const FeaturedDetails = () => {
   const idInt = parseInt(id);
   const job = jobs.find((j) => j.id === idInt);
   const {
-    company_name,
     job_title,
-    job_type,
-    location,
-    logo,
-    remote_or_onsite,
     contact_information,
     salary,
     job_description,
@@ -23,7 +18,10 @@ const FeaturedDetails = () => {
     educational_requirements,
     experiences,
   } = job;
-  console.log(job);
+const handleJob = job => {
+  
+  localStorage.setItem('jobs', JSON.stringify(job));
+}
   return (
     <div>
       <div>
@@ -163,9 +161,9 @@ const FeaturedDetails = () => {
                     {contact_information.address}
                   </p>
                 </div>
-                <button className="btn btn-active btn-secondary w-full mt-5">
+                <Link onClick={handleJob(job)} className="btn btn-active btn-secondary w-full mt-5">
                   Apply Now
-                </button>
+                </Link>
               </div>
             </div>
           </div>
